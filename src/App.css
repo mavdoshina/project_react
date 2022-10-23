@@ -1,20 +1,86 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
 
-.App-header {
+.App {
+  text-align: center;
   background-color: #071022;
-  min-height: 100vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.App-body {
+  /* background-color: #071022; */
+  width: 80%;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.messageList {
+  width: 100%;
+  color: #222;
+  height: calc(80vh - 100px);
+  overflow-y: scroll;
+  background: #fff;
+  padding: 10px;
+}
+
+.message-row {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+}
+
+.message-row.robot {
+  justify-content: left;
+}
+
+.message-item {
+  width: 48%;
+  border: 1px solid #ccc;
+  text-align: left;
+  padding: 5px;
+  margin-bottom: 5px;
+}
+
+.message-item__autor {
+  font-size: 12px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.inpt {
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 5px;
+  width: 40%;
+}
+
+.btn {
+  background: green;
+  color: #fff;
+  box-shadow: none;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.form-message {
+  padding: 10px;
+  background: #fff;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
 }
 
 @keyframes App-logo-spin {

@@ -1,14 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import Message from './Message';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-const pullRequest = 'https://github.com/mavdoshina/project_react/pull/1';
+// const pullRequest = 'https://github.com/mavdoshina/project_react/pull/1';
 root.render(
   <React.StrictMode>
-    <Message pull={pullRequest} />
+    <App/>
   </React.StrictMode>
 );
 
