@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './App.css';
 import Message from './Message';
 import Form from './Form';
@@ -19,6 +19,8 @@ function App() {
       });
     
       const ROBOT_MESSAGE = 'Ваше сообщение получено!';
+
+      const inputRef = useRef(null);
     
       useEffect(() => {
        
@@ -27,12 +29,13 @@ function App() {
             setMessageList(prevstate => [...prevstate, {text:ROBOT_MESSAGE, author:'robot'}])
           }, 1500)
         }
+        inputRef.current?.focus();
       },[messageList])
 
       return (
         <div className="App">
             <div className='App-body'>
-                <Form data={messageBody} setData={setMessageBody} setMessage={setMessageList}></Form>
+                <Form data={messageBody} setData={setMessageBody} setMessage={setMessageList} inputRef={inputRef}></Form>
             <div className='messageList'>
                 {
                 messageList.map((item,index)=><Message text={item.text} author={item.author} key={index}/>)
