@@ -1,6 +1,7 @@
-// import { useCallback } from 'react';
+// import { useEffect } from 'react';
 import Button from '@mui/material/Button';
 // import Input from '@mui/material/Input';
+import TextField from '@mui/material/TextField';
 function Form({data, setData, setMessage, inputRef}) {
     const {text, author} = data
 
@@ -19,42 +20,41 @@ function Form({data, setData, setMessage, inputRef}) {
 
     return (
         <form onSubmit={submitForm} className="form-message">
-            {/* <TextField
-            
+            <TextField
+            inputRef={inputRef} 
             className="inpt"
             required
             id="outlined-required"
             label="Имя"
-            defaultValue={author}
+            value={author}
             onChange = {(e) => {
                 setData(prevstate => ({...prevstate, author: e.target.value}))
             }}
-            /> */}
-            {/* <TextField
+            />
+            <TextField
             className="inpt"
             required
             id="outlined-required"
             label="Сообщение"
-            defaultValue={text}
+            value={text}
             onChange = {(e) => {
                 setData(prevstate => ({...prevstate, text: e.target.value}))
             }}
-            /> */}
-            <input ref={inputRef} placeholder="Имя" className="inpt" value={author} onChange = {(e) => {
+            />
+            {/* <input ref={inputRef} placeholder="Имя" className="inpt" value={author} onChange = {(e) => {
                 setData(prevstate => ({...prevstate, author: e.target.value}))
-            }}/>
+            }}/> */}
             {/* <Input
-            autoFocus
-            // ref={inputRef}
+            inputRef={inputRef} 
             variant="outlined"
             placeholder="Имя"
             value={author}
             onChange = {(e) => {
                 setData(prevstate => ({...prevstate, author: e.target.value}))
             }}/> */}
-            <input placeholder="Сообщение" className="inpt" value={text} onChange = {(e) => {
+            {/* <input placeholder="Сообщение" className="inpt" value={text} onChange = {(e) => {
                 setData(prevstate => ({...prevstate, text: e.target.value}))
-            }}/>
+            }}/> */}
             {/* <button type="submit" className="btn">Отправить</button> */}
             <Button type="submit" variant="contained">Отправить</Button>
         </form>
