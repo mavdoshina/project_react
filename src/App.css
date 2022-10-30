@@ -17,6 +17,7 @@
   width: 80%;
   font-size: calc(10px + 2vmin);
   color: white;
+  display: flex;
 }
 
 .App-link {
@@ -48,6 +49,7 @@
   text-align: left;
   padding: 5px;
   margin-bottom: 5px;
+  border-radius: 5px;
 }
 
 .message-item__autor {
@@ -55,6 +57,10 @@
   border-bottom: 1px solid #ccc;
   padding-bottom: 5px;
   margin-bottom: 10px;
+}
+
+.message-item__text {
+  font-size: 18px;
 }
 
 .inpt {
@@ -81,6 +87,23 @@
   display: flex;
   justify-content: space-between;
   border-bottom: 1px solid #eee;
+}
+
+.chatList {
+  width: 30%;
+  background: #fff;
+  border-right: 1px solid #eee;
+}
+
+.chatItem {
+  padding: 5px;
+  background: #071022;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.messageArea {
+  width: 70%;
 }
 
 @keyframes App-logo-spin {

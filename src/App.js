@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import './App.css';
 import Message from './Message';
 import Form from './Form';
+import Chat from './Chat';
 function App() {
     const [messageList, setMessageList] = useState([
         {
@@ -16,6 +17,22 @@ function App() {
       const [messageBody, setMessageBody] = useState({
         text:'',
         author: '',
+      });
+
+      const [chatList, setChatList] = useState([
+        {
+          id: '1',
+          name: 'Чат №1'
+        },
+        {
+          id: '2',
+          name: 'Чат №2'
+        }
+      ]);
+
+      const [chatBody, setChatBody] = useState({
+        id: '',
+        name: ''
       });
     
       const ROBOT_MESSAGE = 'Ваше сообщение получено!';
@@ -35,12 +52,21 @@ function App() {
       return (
         <div className="App">
             <div className='App-body'>
-                <Form data={messageBody} setData={setMessageBody} setMessage={setMessageList} inputRef={inputRef}></Form>
-            <div className='messageList'>
+              <div className="chatList">
                 {
-                messageList.map((item,index)=><Message text={item.text} author={item.author} key={index}/>)
+                  chatList.map((item,index)=><Chat id={item.id} name={item.name} key={index}/>)
                 }
-            </div>
+              </div>
+
+              <div className='messageArea'>
+                <Form data={messageBody} setData={setMessageBody} setMessage={setMessageList} inputRef={inputRef}></Form>
+
+                <div className='messageList'>
+                    {
+                    messageList.map((item,index)=><Message text={item.text} author={item.author} key={index}/>)
+                    }
+                </div>
+              </div>
           </div>
         </div>
       );
