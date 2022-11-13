@@ -1,12 +1,18 @@
 import './App.css';
 
 function Message(props) {
+  
+  let useClassName = 'message-row';
+  if (props.author === "robot") {
+    useClassName += ' robot';
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-         My First React App
-        <a href={props.pull}>Pull request</a>
-      </header>
+    <div className={useClassName}>
+      <div className='message-item'>
+        <div className='message-item__autor'>{props.author}</div>
+        <div className='message-item__text'>{props.text}</div>
+      </div>
     </div>
   );
 }
