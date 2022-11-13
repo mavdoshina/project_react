@@ -3,6 +3,7 @@ import './App.css';
 import Message from './Message';
 import Form from './Form';
 import Chat from './Chat';
+import Routes from './Routes';
 function App() {
     const [messageList, setMessageList] = useState([
         {
@@ -51,6 +52,7 @@ function App() {
 
       return (
         <div className="App">
+          <Routes></Routes>
             <div className='App-body'>
               <div className="chatList">
                 {
