@@ -1,5 +1,3 @@
-import './App.css';
-
 function Message(props) {
   
   let useClassName = 'message-row';
