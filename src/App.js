@@ -4,6 +4,8 @@ import Message from './Message';
 import Form from './Form';
 import Chat from './Chat';
 import Routes from './Routes';
+import Home from './Home';
+
 function App() {
     const [messageList, setMessageList] = useState([
         {
