@@ -24,9 +24,9 @@ function RoutesUser() {
                 <Route exact path="/"></Route>
                 <Route exact path="/profile" element={<Profile />}></Route>
                 <Route exact path="/chats" element={<Chats />}></Route>
-                <Route path="/chats/:chatId">
+                {/* <Route path="/chats/:chatId">
 <Chats chats={chats} setChats={setChats} />
-</Route>
+</Route> */}
                 <Route path="*" element={<NotFound/>}></Route>
             </Routes>
         </div>
