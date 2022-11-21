@@ -1,10 +1,12 @@
+import React from 'react';
 import { useEffect, useState, useRef } from 'react';
 import './App.css';
 import Message from './Message';
 import Form from './Form';
 import Chat from './Chat';
-import Routes from './Routes';
+import RoutesUser from './RoutesUser';
 import Home from './Home';
+
 
 function App() {
     const [messageList, setMessageList] = useState([
@@ -54,8 +56,9 @@ function App() {
 
       return (
         <div className="App">
-          <Routes></Routes>
-            <div className='App-body'>
+         <div className='App-body'>
+            <RoutesUser/>
+            
               <div className="chatList">
                 {
                   chatList.map((item,index)=><Chat id={item.id} name={item.name} key={index}/>)
