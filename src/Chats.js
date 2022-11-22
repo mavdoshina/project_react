@@ -1,11 +1,47 @@
 import { useEffect, useState, useRef } from 'react';
+import {useParams, Redirect} from 'react-router-dom';
 import Message from './Message';
 import Form from './Form';
 import Chat from './Chat';
 import RoutesUser from './RoutesUser';
 import Home from './Home';
+import ChatList from './ChatList';
 
 function Chats() {
+
+  const { chatId } = useParams();
+
+
+  const initialChats = {
+    id1: {
+      name: "Chat1",
+      messages: [
+        {
+          text:'Привет',
+          author: 'Marina',
+        },
+        {
+          text:'Ваше сообщение получено!',
+          author: 'robot',
+        }
+      ],
+    },
+    id2: {
+      name: "Chat2",
+      messages: [
+        {
+          text:'Привет',
+          author: 'Elena',
+        },
+        {
+          text:'Ваше сообщение получено!',
+          author: 'robot',
+        }
+      ],
+    },
+  };
+
+  const [chats, setChats] = useState(initialChats);
 
 
     const [messageList, setMessageList] = useState([
@@ -23,16 +59,16 @@ function Chats() {
         author: '',
       });
 
-      const [chatList, setChatList] = useState([
-        {
-          id: '1',
-          name: 'Чат №1'
-        },
-        {
-          id: '2',
-          name: 'Чат №2'
-        }
-      ]);
+      // const [chatList, setChatList] = useState([
+      //   {
+      //     id: '1',
+      //     name: 'Чат №1'
+      //   },
+      //   {
+      //     id: '2',
+      //     name: 'Чат №2'
+      //   }
+      // ]);
 
       const [chatBody, setChatBody] = useState({
         id: '',
@@ -51,14 +87,20 @@ function Chats() {
           }, 1500)
         }
         inputRef.current?.focus();
-      },[messageList])
+      },[messageList]);
+
+
+      if (!chats[chatId]) {
+        return  <Redirect to="/nochat" />;
+      }
 
       return (
         <div className='chatArea'>
         <div className="chatList">
-                {
+                {/* {
                   chatList.map((item,index)=><Chat id={item.id} name={item.name} key={index}/>)
-                }
+                } */}
+                <ChatList chats={chats} chatId={chatId}/>
               </div>
 
               <div className='messageArea'>
@@ -66,7 +108,7 @@ function Chats() {
 
                 <div className='messageList'>
                     {
-                    messageList.map((item,index)=><Message text={item.text} author={item.author} key={index}/>)
+                    chats[chatId].messages.map((item,index)=><Message text={item.text} author={item.author} key={index}/>)
                     }
                 </div>
               </div>

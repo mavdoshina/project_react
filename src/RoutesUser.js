@@ -4,6 +4,7 @@ import Chats from './Chats';
 import { useEffect, useState, useRef } from 'react';
 import { Link, Route, Routes} from 'react-router-dom';
 import NotFound from './NotFound';
+import NoChat from './NoChat';
 function RoutesUser() {
     // const [chats, setChats] = useState(initialChats);
     return (
@@ -27,6 +28,7 @@ function RoutesUser() {
                 {/* <Route path="/chats/:chatId">
 <Chats chats={chats} setChats={setChats} />
 </Route> */}
+                <Route path='/nochat' element={<NoChat/>}></Route>
                 <Route path="*" element={<NotFound/>}></Route>
             </Routes>
         </div>
