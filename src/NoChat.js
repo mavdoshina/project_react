@@ -1,9 +1,10 @@
 import ChatList from "./ChatList";
 
-function NoChat() {
+function NoChat({ chats}) {
+    console.log(chats);
     return (
         <>
-        <ChatList/>
+        <ChatList chats={chats}/>
         <span>Pleas select a chat</span>
         </>
     )

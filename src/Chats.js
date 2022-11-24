@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from 'react';
-import {useParams, Redirect} from 'react-router-dom';
+import { useEffect, useState, useRef, useRouteMatch } from 'react';
+import {useParams, Navigate} from 'react-router-dom';
 import Message from './Message';
 import Form from './Form';
 import Chat from './Chat';
@@ -7,41 +7,11 @@ import RoutesUser from './RoutesUser';
 import Home from './Home';
 import ChatList from './ChatList';
 
-function Chats() {
+function Chats({ chats}) {
 
   const { chatId } = useParams();
 
-
-  const initialChats = {
-    id1: {
-      name: "Chat1",
-      messages: [
-        {
-          text:'Привет',
-          author: 'Marina',
-        },
-        {
-          text:'Ваше сообщение получено!',
-          author: 'robot',
-        }
-      ],
-    },
-    id2: {
-      name: "Chat2",
-      messages: [
-        {
-          text:'Привет',
-          author: 'Elena',
-        },
-        {
-          text:'Ваше сообщение получено!',
-          author: 'robot',
-        }
-      ],
-    },
-  };
-
-  const [chats, setChats] = useState(initialChats);
+  // const { path, url } = useRouteMatch();
 
 
     const [messageList, setMessageList] = useState([
@@ -54,6 +24,8 @@ function Chats() {
           author: 'robot',
         }
       ])
+
+      
       const [messageBody, setMessageBody] = useState({
         text:'',
         author: '',
@@ -91,7 +63,8 @@ function Chats() {
 
 
       if (!chats[chatId]) {
-        return  <Redirect to="/nochat" />;
+        console.log(chats);
+        return  <Navigate to="/nochat"/>;
       }
 
       return (

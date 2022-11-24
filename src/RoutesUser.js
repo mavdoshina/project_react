@@ -6,7 +6,36 @@ import { Link, Route, Routes} from 'react-router-dom';
 import NotFound from './NotFound';
 import NoChat from './NoChat';
 function RoutesUser() {
-    // const [chats, setChats] = useState(initialChats);
+    const initialChats = {
+        id1: {
+          name: "Chat1",
+          messages: [
+            {
+              text:'Привет',
+              author: 'Marina',
+            },
+            {
+              text:'Ваше сообщение получено!',
+              author: 'robot',
+            }
+          ],
+        },
+        id2: {
+          name: "Chat2",
+          messages: [
+            {
+              text:'Привет',
+              author: 'Elena',
+            },
+            {
+              text:'Ваше сообщение получено!',
+              author: 'robot',
+            }
+          ],
+        },
+      };
+    
+      const [chats, setChats] = useState(initialChats);
     return (
         <div className='menu-area'>
         
@@ -24,11 +53,9 @@ function RoutesUser() {
             <Routes>
                 <Route exact path="/"></Route>
                 <Route exact path="/profile" element={<Profile />}></Route>
-                <Route exact path="/chats" element={<Chats />}></Route>
-                {/* <Route path="/chats/:chatId">
-<Chats chats={chats} setChats={setChats} />
-</Route> */}
-                <Route path='/nochat' element={<NoChat/>}></Route>
+                <Route exact path="/chats" element={<Chats chats={chats}/>}></Route>
+                <Route path="/chats/:chatId" element={<Chats chats={chats} setChats={setChats}/>}></Route>
+                <Route path='/nochat' element={<NoChat chats={chats}/>}></Route>
                 <Route path="*" element={<NotFound/>}></Route>
             </Routes>
         </div>
