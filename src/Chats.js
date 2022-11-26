@@ -14,22 +14,22 @@ function Chats({ chats}) {
   // const { path, url } = useRouteMatch();
 
 
-    const [messageList, setMessageList] = useState([
-        {
-          text:'Привет',
-          author: 'Marina',
-        },
-        {
-          text:'Ваше сообщение получено!',
-          author: 'robot',
-        }
-      ])
+    // const [messageList, setMessageList] = useState([
+    //     {
+    //       text:'Привет',
+    //       author: 'Marina',
+    //     },
+    //     {
+    //       text:'Ваше сообщение получено!',
+    //       author: 'robot',
+    //     }
+    //   ])
 
       
-      const [messageBody, setMessageBody] = useState({
-        text:'',
-        author: '',
-      });
+      // const [messageBody, setMessageBody] = useState({
+      //   text:'',
+      //   author: '',
+      // });
 
       // const [chatList, setChatList] = useState([
       //   {
@@ -42,42 +42,38 @@ function Chats({ chats}) {
       //   }
       // ]);
 
-      const [chatBody, setChatBody] = useState({
-        id: '',
-        name: ''
-      });
+      // const [chatBody, setChatBody] = useState({
+      //   id: '',
+      //   name: ''
+      // });
     
       const ROBOT_MESSAGE = 'Ваше сообщение получено!';
 
       const inputRef = useRef(null);
 
-      useEffect(() => {
+      // useEffect(() => {
        
-        if(messageList.length > 0 && messageList.slice(-1)[0].author !== 'robot'){
-          setTimeout(()=>{
-            setMessageList(prevstate => [...prevstate, {text:ROBOT_MESSAGE, author:'robot'}])
-          }, 1500)
-        }
-        inputRef.current?.focus();
-      },[messageList]);
+      //   if(messageList.length > 0 && messageList.slice(-1)[0].author !== 'robot'){
+      //     setTimeout(()=>{
+      //       setMessageList(prevstate => [...prevstate, {text:ROBOT_MESSAGE, author:'robot'}])
+      //     }, 1500)
+      //   }
+      //   inputRef.current?.focus();
+      // },[messageList]);
 
 
       if (!chats[chatId]) {
-        console.log(chats);
         return  <Navigate to="/nochat"/>;
       }
 
       return (
         <div className='chatArea'>
         <div className="chatList">
-                {/* {
-                  chatList.map((item,index)=><Chat id={item.id} name={item.name} key={index}/>)
-                } */}
                 <ChatList chats={chats} chatId={chatId}/>
               </div>
 
               <div className='messageArea'>
-                <Form data={messageBody} setData={setMessageBody} setMessage={setMessageList} inputRef={inputRef}></Form>
+                {/* <Form data={messageBody} setData={setMessageBody} setMessage={setMessageList} inputRef={inputRef}></Form> */}
 
                 <div className='messageList'>
                     {
