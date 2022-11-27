@@ -3,6 +3,7 @@ import './App.css';
 import RoutesUser from './RoutesUser';
 import { useState } from 'react';
 import { Provider } from "react-redux";
+import {store} from "./store/index";
 
 function App() {
       return (

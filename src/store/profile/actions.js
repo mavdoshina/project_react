@@ -1,1 +1,4 @@
-const toggleShowName = {type:'SWITCH_TOGGLE',payload:['title']}
+const SWITCH_TOGGLE = 'SWITCH_TOGGLE';
+export const toggleShowName = {
+    type: SWITCH_TOGGLE
+};

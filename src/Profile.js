@@ -1,12 +1,8 @@
-import {
-    useCallback
-} from "react";
-import {
-    store
-} from "/store/index";
+import {useSelector, useDispatch} from "react-redux";
+import {useCallback} from "react";
 import {
     toggleShowName
-} from "/store/profile/actions";
+} from "./store/profile/actions";
 
 function Profile() {
 
@@ -16,7 +12,7 @@ function Profile() {
         dispatch(toggleShowName);
         }, [dispatch]);
         return (
-        <div>
+        <div className="profile-block">
         <h4>Profile</h4>
         <input
         type="checkbox"
@@ -30,4 +26,4 @@ function Profile() {
         );
     }
 
-    export default Profile;
+export default Profile;

@@ -1,15 +1,15 @@
 const initialState = {
     showName: false,
     name: 'Default'
-    }
-    const profileReducer = (state = initialState, action) => {
+}
+export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-    case EXAMPLE_ACTION:
-    return {
-    ...state,
-    showName: !state.showName
-    }
+        case 'SWITCH_TOGGLE':
+        return {
+        ...state,
+        showName: !state.showName
+        }
     default:
-    return state
+        return state
     }
-    }
+}
