@@ -18,6 +18,8 @@
   font-size: calc(10px + 2vmin);
   color: white;
   display: flex;
+  background: #fff;
+  flex-wrap: wrap;
 }
 
 .App-link {
@@ -104,6 +106,34 @@
 
 .messageArea {
   width: 70%;
+}
+
+.menu {
+  display: flex;
+  padding-left: 0;
+  list-style: none;
+}
+
+.menu li {
+  padding: 5px;
+}
+
+.menu-area {
+  width: 100%;
+}
+
+h2,
+h3 {
+  color: #000;
+}
+
+.chatArea {
+  display: flex;
+
+}
+
+.profile-block {
+  color: #000;
 }
 
 @keyframes App-logo-spin {
