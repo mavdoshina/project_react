@@ -1,13 +1,19 @@
 const initialState = {
-    showName: false,
-    name: 'Default'
+    // showName: false,
+    name: 'Default',
+    profile: 'Marina'
 }
 export const profileReducer = (state = initialState, action) => {
     switch (action.type) {
-        case 'SWITCH_TOGGLE':
+        // case 'SWITCH_TOGGLE':
+        // return {
+        // ...state,
+        // showName: !state.showName
+        // }
+        case 'CHANGE_NAME':
         return {
         ...state,
-        showName: !state.showName
+        name: action.payload
         }
     default:
         return state
