@@ -5,6 +5,7 @@ import { useEffect, useState, useRef } from 'react';
 import { Link, Route, Routes} from 'react-router-dom';
 import NotFound from './NotFound';
 import NoChat from './NoChat';
+import {AUTHORS} from "./constants";
 function RoutesUser() {
     const initialChats = {
         id1: {
@@ -12,11 +13,11 @@ function RoutesUser() {
           messages: [
             {
               text:'Привет',
-              author: 'Marina',
+              author: AUTHORS.ME,
             },
             {
               text:'Ваше сообщение получено!',
-              author: 'robot',
+              author: AUTHORS.BOT,
             }
           ],
         },
@@ -29,7 +30,7 @@ function RoutesUser() {
             },
             {
               text:'Ваше сообщение получено!',
-              author: 'robot',
+              author: AUTHORS.BOT,
             }
           ],
         },

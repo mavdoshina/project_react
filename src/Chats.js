@@ -6,61 +6,28 @@ import Chat from './Chat';
 import RoutesUser from './RoutesUser';
 import Home from './Home';
 import ChatList from './ChatList';
+import {useSelector, useDispatch} from "react-redux";
+import {
+  addMessage
+} from "./store/messages/actions";
 
-function Chats({ chats}) {
+function Chats() {
 
   const { chatId } = useParams();
 
-  // const { path, url } = useRouteMatch();
+  const chats = useSelector((state) => state.chats.chatList);
+  const messages = useSelector(state => state.messages.messageList);
 
-
-    // const [messageList, setMessageList] = useState([
-    //     {
-    //       text:'Привет',
-    //       author: 'Marina',
-    //     },
-    //     {
-    //       text:'Ваше сообщение получено!',
-    //       author: 'robot',
-    //     }
-    //   ])
-
-      
-      // const [messageBody, setMessageBody] = useState({
-      //   text:'',
-      //   author: '',
-      // });
-
-      // const [chatList, setChatList] = useState([
-      //   {
-      //     id: '1',
-      //     name: 'Чат №1'
-      //   },
-      //   {
-      //     id: '2',
-      //     name: 'Чат №2'
-      //   }
-      // ]);
-
-      // const [chatBody, setChatBody] = useState({
-      //   id: '',
-      //   name: ''
-      // });
-    
+  const dispatch = useDispatch();
+    const onAddMessage = (message) => {
+    dispatch(addMessage(chatId, message));
+  }
+  
       const ROBOT_MESSAGE = 'Ваше сообщение получено!';
 
       const inputRef = useRef(null);
 
-      // useEffect(() => {
-       
-      //   if(messageList.length > 0 && messageList.slice(-1)[0].author !== 'robot'){
-      //     setTimeout(()=>{
-      //       setMessageList(prevstate => [...prevstate, {text:ROBOT_MESSAGE, author:'robot'}])
-      //     }, 1500)
-      //   }
-      //   inputRef.current?.focus();
-      // },[messageList]);
-
+    
 
       if (!chats[chatId]) {
         return  <Navigate to="/nochat"/>;
@@ -77,7 +44,9 @@ function Chats({ chats}) {
 
                 <div className='messageList'>
                     {
-                    chats[chatId].messages.map((item,index)=><Message text={item.text} author={item.author} key={index}/>)
+                    // chats[chatId].messages.map((item,index)=><Message text={item.text} author={item.author} key={index}/>)
+
+                    messages.map((item,index)=><Message text={item.text} author={item.author} key={index}/>)
                     }
                 </div>
               </div>
