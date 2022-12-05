@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useRouteMatch } from 'react';
+import { useEffect, useState, useRef, useRouteMatch, useCallback } from 'react';
 import {useParams, Navigate} from 'react-router-dom';
 import Message from './Message';
 import Form from './Form';
@@ -14,6 +14,9 @@ import {
 function Chats() {
 
   const { chatId } = useParams();
+  const handleAddMessage = useCallback((newMessage) => {
+    dispatch(addMessage({ message: newMessage, chatId }))
+}, [])
 
   const chats = useSelector((state) => state.chats.chatList);
   const messages = useSelector(state => state.messages.messageList);
@@ -40,7 +43,7 @@ function Chats() {
               </div>
 
               <div className='messageArea'>
-                {/* <Form data={messageBody} setData={setMessageBody} setMessage={setMessageList} inputRef={inputRef}></Form> */}
+                <Form onAddMessage={handleAddMessage} inputRef={inputRef}></Form>
 
                 <div className='messageList'>
                     {
