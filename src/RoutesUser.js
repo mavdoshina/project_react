@@ -6,6 +6,7 @@ import { Link, Route, Routes} from 'react-router-dom';
 import NotFound from './NotFound';
 import NoChat from './NoChat';
 import {AUTHORS} from "./constants";
+import {useSelector, useDispatch} from "react-redux";
 function RoutesUser() {
     const initialChats = {
         id1: {
@@ -36,7 +37,10 @@ function RoutesUser() {
         },
       };
     
-      const [chats, setChats] = useState(initialChats);
+      // const [chats, setChats] = useState(initialChats);
+
+      const chats = useSelector(state => state.chats)
+      console.log(chats);
     return (
         <div className='menu-area'>
         
@@ -55,9 +59,9 @@ function RoutesUser() {
                 <Route exact path="/"></Route>
                 <Route exact path="/profile" element={<Profile />}></Route>
                 <Route exact path="/chats" element={<Chats chats={chats}/>}></Route>
-                <Route path="/chats/:chatId" element={<Chats chats={chats} setChats={setChats}/>}></Route>
+                <Route path="/chats/:chatId" element={<Chats chats={chats}/>}></Route>
                 <Route path='/nochat' element={<NoChat chats={chats}/>}></Route>
-                <Route path="*" element={<NotFound/>}></Route>
+                {/* <Route path="*" element={<NotFound/>}></Route> */}
             </Routes>
         </div>
     )

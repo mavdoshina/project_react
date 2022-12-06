@@ -3,7 +3,7 @@ import {ADD_CHAT} from "./actions";
 const initialState = {
     chatList: [
         {
-            id: '1',
+            id1: '1',
             name: '11111'
         }
     ],
