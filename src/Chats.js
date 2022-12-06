@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useRouteMatch, useCallback, usePrevious } from 'react';
+import { useEffect, useState, useRef, useRouteMatch } from 'react';
 import {useParams, Navigate} from 'react-router-dom';
 import Message from './Message';
 import Form from './Form';
@@ -7,76 +7,79 @@ import RoutesUser from './RoutesUser';
 import Home from './Home';
 import ChatList from './ChatList';
 import {useSelector, useDispatch} from "react-redux";
-import {
-  addMessage
-} from "./store/messages/actions";
-import {selectMessagesByChatId} from "./selectors/messages";
-import {AUTHORS} from "./constants";
+console.log('222');
+function Chats({chats}) {
 
-function Chats() {
+    // const chats = useSelector(state => state.chats)
+    console.log('ddd');
 
-  const { chatId } = useParams();
-  const handleAddMessage = useCallback((newMessage) => {
-    dispatch(addMessage({ message: newMessage, chatId }))
-}, [])
+    const { chatId } = useParams();
+  console.log(chats);
+  console.log(chatId);
 
-  const chats = useSelector((state) => state.chats.chatList);
-  const messages = useSelector(state => state.messages.messageList);
+    function isId(chatItem) {
+        return chatItem.id === chatId;
+      }
+      
+      console.log(chats.chatList.find(isId));
 
-  const dispatch = useDispatch();
-    const onAddMessage = (message) => {
-    dispatch(addMessage(chatId, message));
-  }
+      const messages = useSelector(state => state.messages.messageList);
+console.log(messages);
   
+
+  // const { path, url } = useRouteMatch();
+
+
+    // const [messageList, setMessageList] = useState([
+    //     {
+    //       text:'Привет',
+    //       author: 'Marina',
+    //     },
+    //     {
+    //       text:'Ваше сообщение получено!',
+    //       author: 'robot',
+    //     }
+    //   ])
+
+
+      // const [messageBody, setMessageBody] = useState({
+      //   text:'',
+      //   author: '',
+      // });
+
+      // const [chatList, setChatList] = useState([
+      //   {
+      //     id: '1',
+      //     name: 'Чат №1'
+      //   },
+      //   {
+      //     id: '2',
+      //     name: 'Чат №2'
+      //   }
+      // ]);
+
+      // const [chatBody, setChatBody] = useState({
+      //   id: '',
+      //   name: ''
+      // });
+
       const ROBOT_MESSAGE = 'Ваше сообщение получено!';
 
       const inputRef = useRef(null);
 
+      // useEffect(() => {
+
+      //   if(messageList.length > 0 && messageList.slice(-1)[0].author !== 'robot'){
+      //     setTimeout(()=>{
+      //       setMessageList(prevstate => [...prevstate, {text:ROBOT_MESSAGE, author:'robot'}])
+      //     }, 1500)
+      //   }
+      //   inputRef.current?.focus();
+      // },[messageList]);
 
 
-  // const { chatId } = useParams()
-  // console.log(chatId);
-  // console.log('hhhh');
-  // const timer = useRef(null)
-
-  // const messages = useSelector(state => selectMessagesByChatId(state, { chatId }))
-  // const dispatch = useDispatch()
-
-  // const prevMessages = usePrevious(messages)
-
-  // const handleAddMessage = useCallback((newMessage) => {
-  //     dispatch(addMessage({ message: newMessage, chatId }))
-  // }, [])
-
-  // useEffect(() => {
-  //     if (
-  //         prevMessages &&
-  //         prevMessages.length < messages.length &&
-  //         messages[messages.length - 1].sender === AUTHORS.ME
-  //     ) {
-  //         timer.current = setTimeout(() => {
-  //             dispatch(
-  //                 addMessage({
-  //                     message: {
-  //                         text: "I am robot",
-  //                         sender: AUTHORS.BOT
-  //                     },
-  //                     chatId
-  //                 })
-  //             )
-  //         }, 1000)
-  //     }
-  // }, [messages, prevMessages, handleAddMessage])
-
-  // useEffect(() => {
-  //     return () => {
-  //         console.log('willUnmount')
-  //         clearTimeout(timer.current)
-  //     }
-  // }, [])
-    
-
-      if (!chats[chatId]) {
+    //   if (!chats[chatId]) {
+        if (!chats.chatList.find(isId)){
         return  <Navigate to="/nochat"/>;
       }
 
@@ -87,13 +90,11 @@ function Chats() {
               </div>
 
               <div className='messageArea'>
-                <Form onAddMessage={handleAddMessage} ></Form>
+                {/* <Form data={messageBody} setData={setMessageBody} setMessage={setMessageList} inputRef={inputRef}></Form> */}
 
                 <div className='messageList'>
                     {
-                    // chats[chatId].messages.map((item,index)=><Message text={item.text} author={item.author} key={index}/>)
-
-                    messages.map((item,index)=><Message text={item.text} author={item.author} key={index}/>)
+                    messages[chatId].map((item,index)=><Message text={item.text} author={item.author} key={index}/>)
                     }
                 </div>
               </div>

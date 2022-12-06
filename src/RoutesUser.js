@@ -61,7 +61,7 @@ function RoutesUser() {
                 <Route exact path="/chats" element={<Chats chats={chats}/>}></Route>
                 <Route path="/chats/:chatId" element={<Chats chats={chats}/>}></Route>
                 <Route path='/nochat' element={<NoChat chats={chats}/>}></Route>
-                {/* <Route path="*" element={<NotFound/>}></Route> */}
+                <Route path="*" element={<NotFound/>}></Route>
             </Routes>
         </div>
     )

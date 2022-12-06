@@ -47,7 +47,7 @@ const ChatListFunctionComponent = props => {
 
         {chats.chatList.map(chatItem => (
             <div key={chatItem.id}>
-                <Link to={`/chat/${chatItem.id}`}>
+                <Link to={`/chats/${chatItem.id}`}>
                     <span>{chatItem.name}</span>
                 </Link>
             </div>

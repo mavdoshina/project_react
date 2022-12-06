@@ -1,7 +1,6 @@
 import ChatList from "./ChatList";
 
 function NoChat({ chats}) {
-    console.log(chats);
     return (
         <>
         <ChatList chats={chats}/>

@@ -1,7 +1,19 @@
 import {ADD_MESSAGE} from "./actions";
+import {AUTHORS} from "../../constants";
 
 const initialState = {
-    messageList: {},
+    messageList: {
+        id0: [
+            {
+                text:'Привет',
+                author: AUTHORS.ME,
+            },
+            {
+                text:'Ваше сообщение получено!',
+                author: AUTHORS.BOT,
+            }
+        ]
+    },
 };
 
 export const messagesReducer = (state = initialState, action) => {
