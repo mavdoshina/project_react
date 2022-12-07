@@ -136,6 +136,15 @@ h3 {
   color: #000;
 }
 
+.chat-add-area {
+  display: flex;
+  justify-content: center;
+}
+
+.child__bordered  p {
+  color: #000;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

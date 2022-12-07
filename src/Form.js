@@ -44,7 +44,7 @@ function Form(props) {
 
         if (onAddMessage) {
             console.log('sss');
-            onAddMessage({ text: inputValue, sender: AUTHORS.ME })
+            onAddMessage({ text: inputValue, author: AUTHORS.ME })
         }
 
         setInputValue('')
@@ -59,7 +59,7 @@ function Form(props) {
             className="inpt"
             required
             id="outlined-required"
-            label="Имя"
+            label="Соообщение"
             value={inputValue}
             onChange = {handleChange}
             />

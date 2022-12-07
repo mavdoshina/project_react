@@ -6,74 +6,38 @@ import Chat from './Chat';
 import RoutesUser from './RoutesUser';
 import Home from './Home';
 import ChatList from './ChatList';
-import {useSelector, useDispatch} from "react-redux";
+import {useSelector, useDispatch, shallowEqual} from "react-redux";
 import {
   addMessage
 } from "./store/messages/actions";
+import { getChatList } from "./store/chats/selectors";
 
 
-function Chats({chats}) {
-
-    // const chats = useSelector(state => state.chats)
+function Chats() {
 
     const { chatId } = useParams();
     const dispatch = useDispatch();
+
+    // const chats = useSelector(state => state.chats)
+    const chats = useSelector(getChatList, shallowEqual);
 
 
     function isId(chatItem) {
         return chatItem.id === chatId;
       }
-      
-
     
-    const handleAddMessage = useCallback((newMessage) => {
-      console.log(chatId)
-      dispatch(addMessage({ chatId, message: newMessage }))
-    }, [])
       
+    const  handleAddMessage = (message) => {
+      console.log(chatId)
+      dispatch(addMessage(chatId, message));
+    }
 
-  // const { path, url } = useRouteMatch();
-
-
-    // const [messageList, setMessageList] = useState([
-    //     {
-    //       text:'Привет',
-    //       author: 'Marina',
-    //     },
-    //     {
-    //       text:'Ваше сообщение получено!',
-    //       author: 'robot',
-    //     }
-    //   ])
+    const messages = useSelector(state => state.messages.messageList);
 
 
-      // const [messageBody, setMessageBody] = useState({
-      //   text:'',
-      //   author: '',
-      // });
+    const ROBOT_MESSAGE = 'Ваше сообщение получено!';
 
-      // const [chatList, setChatList] = useState([
-      //   {
-      //     id: '1',
-      //     name: 'Чат №1'
-      //   },
-      //   {
-      //     id: '2',
-      //     name: 'Чат №2'
-      //   }
-      // ]);
-
-      // const [chatBody, setChatBody] = useState({
-      //   id: '',
-      //   name: ''
-      // });
-
-      const messages = useSelector(state => state.messages.messageList);
-
-
-      const ROBOT_MESSAGE = 'Ваше сообщение получено!';
-
-      const inputRef = useRef(null);
+    const inputRef = useRef(null);
 
       // useEffect(() => {
 
@@ -87,7 +51,7 @@ function Chats({chats}) {
 
 
     //   if (!chats[chatId]) {
-        if (!chats.chatList.find(isId)){
+      if (!chats.chatList.find(isId)){
         return  <Navigate to="/nochat"/>;
       }
 
@@ -103,8 +67,10 @@ function Chats({chats}) {
                 <Form onAddMessage={handleAddMessage}></Form>
 
                 <div className='messageList'>
+                    
                     {
-                    messages[chatId].map((item,index)=><Message text={item.text} author={item.author} key={index}/>)
+                      messages[chatId] ?
+                    messages[chatId].map((item,index)=><Message text={item.text} author={item.author} key={index}/>) : ''
                     }
                 </div>
               </div>

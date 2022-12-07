@@ -3,6 +3,7 @@ import { useEffect, useState, useRef, useRouteMatch, useCallback } from 'react';
 import {useSelector, useDispatch} from "react-redux";
 import TextField from '@mui/material/TextField';
 import {useParams, Navigate} from 'react-router-dom';
+import Button from '@mui/material/Button';
 import {
     addChat, addChatThunk
   } from "./store/chats/actions";
@@ -30,8 +31,18 @@ const ChatListFunctionComponent = props => {
 
 
     return <div className="child__bordered">
-        <p>ChatList Function Component</p>
 
+        {chats.chatList.map(chatItem => (
+            <div key={chatItem.id}>
+                <Link to={`/chats/${chatItem.id}`}>
+                <b>{chatItem.name}</b>
+                </Link>
+            </div>
+        ))}
+        
+        
+        <p>Добавить чат</p>
+        <div className='chat-add-area'>
         <TextField
             id="text-field"
             className="child__text-field"
@@ -41,15 +52,10 @@ const ChatListFunctionComponent = props => {
             value={newChatName}
             onChange={handleChangeChatName}
         />
-        <button className="app__button" onClick={handleAddChat}>Добавить чат</button>
 
-        {chats.chatList.map(chatItem => (
-            <div key={chatItem.id}>
-                <Link to={`/chats/${chatItem.id}`}>
-                    <span>{chatItem.name}</span>
-                </Link>
-            </div>
-        ))}
+        <Button type="submit" variant="contained" onClick={handleAddChat}>Добавить чат</Button>
+        </div>
+        
     </div>
 }
 

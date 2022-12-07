@@ -39,8 +39,8 @@ function RoutesUser() {
     
       // const [chats, setChats] = useState(initialChats);
 
-      const chats = useSelector(state => state.chats)
-      console.log(chats);
+      // const chats = useSelector(state => state.chats)
+      // console.log(chats);
     return (
         <div className='menu-area'>
         
@@ -58,9 +58,9 @@ function RoutesUser() {
             <Routes>
                 <Route exact path="/"></Route>
                 <Route exact path="/profile" element={<Profile />}></Route>
-                <Route exact path="/chats" element={<Chats chats={chats}/>}></Route>
-                <Route path="/chats/:chatId" element={<Chats chats={chats}/>}></Route>
-                <Route path='/nochat' element={<NoChat chats={chats}/>}></Route>
+                <Route exact path="/chats" element={<Chats />}></Route>
+                <Route path="/chats/:chatId" element={<Chats />}></Route>
+                <Route path='/nochat' element={<NoChat />}></Route>
                 <Route path="*" element={<NotFound/>}></Route>
             </Routes>
         </div>
