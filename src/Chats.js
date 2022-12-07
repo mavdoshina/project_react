@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useRouteMatch } from 'react';
+import { useEffect, useState, useRef, useRouteMatch, useCallback } from 'react';
 import {useParams, Navigate} from 'react-router-dom';
 import Message from './Message';
 import Form from './Form';
@@ -7,25 +7,30 @@ import RoutesUser from './RoutesUser';
 import Home from './Home';
 import ChatList from './ChatList';
 import {useSelector, useDispatch} from "react-redux";
-console.log('222');
+import {
+  addMessage
+} from "./store/messages/actions";
+
+
 function Chats({chats}) {
 
     // const chats = useSelector(state => state.chats)
-    console.log('ddd');
 
     const { chatId } = useParams();
-  console.log(chats);
-  console.log(chatId);
+    const dispatch = useDispatch();
+
 
     function isId(chatItem) {
         return chatItem.id === chatId;
       }
       
-      console.log(chats.chatList.find(isId));
 
-      const messages = useSelector(state => state.messages.messageList);
-console.log(messages);
-  
+    
+    const handleAddMessage = useCallback((newMessage) => {
+      console.log(chatId)
+      dispatch(addMessage({ chatId, message: newMessage }))
+    }, [])
+      
 
   // const { path, url } = useRouteMatch();
 
@@ -63,6 +68,9 @@ console.log(messages);
       //   name: ''
       // });
 
+      const messages = useSelector(state => state.messages.messageList);
+
+
       const ROBOT_MESSAGE = 'Ваше сообщение получено!';
 
       const inputRef = useRef(null);
@@ -91,6 +99,8 @@ console.log(messages);
 
               <div className='messageArea'>
                 {/* <Form data={messageBody} setData={setMessageBody} setMessage={setMessageList} inputRef={inputRef}></Form> */}
+
+                <Form onAddMessage={handleAddMessage}></Form>
 
                 <div className='messageList'>
                     {

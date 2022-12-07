@@ -9,11 +9,8 @@ function Message(props) {
   }
 
   const profileName = useSelector(state => {
-    console.log(state);
     return state.profile.name;
   });
-  console.log(profileName);
-  console.log(props.author);
 
   return (
     <div className={useClassName}>

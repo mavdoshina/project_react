@@ -28,8 +28,6 @@ const ChatListFunctionComponent = props => {
     //     return  <Navigate to="/nochat"/>;
     //   }
 
-    console.log(chats);
-    console.log('111');
 
     return <div className="child__bordered">
         <p>ChatList Function Component</p>

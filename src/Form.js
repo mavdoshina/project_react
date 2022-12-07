@@ -25,6 +25,7 @@ function Form(props) {
 
     const { onAddMessage, formId } = props
     const [inputValue, setInputValue] = useState('')
+    // const [inputText, setInputValue] = useState('')
 
     const inputFormId = useMemo(() => {
         return "message-input" + formId
@@ -42,6 +43,7 @@ function Form(props) {
         console.log('on submit', { inputValue })
 
         if (onAddMessage) {
+            console.log('sss');
             onAddMessage({ text: inputValue, sender: AUTHORS.ME })
         }
 

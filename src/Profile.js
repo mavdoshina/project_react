@@ -21,7 +21,6 @@ function Profile() {
         // const setName = () => {};
 
         const setName = useCallback(() => {
-            console.log(value)
             dispatch(changeName(value))
             }, [dispatch, value]);
 

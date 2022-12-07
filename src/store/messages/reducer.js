@@ -19,6 +19,7 @@ const initialState = {
 export const messagesReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_MESSAGE: {
+            console.log('reduser');
             const currentList = state.messageList[action.chatId] || [];
             return {
                 ...state,
