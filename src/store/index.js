@@ -3,6 +3,7 @@ import {applyMiddleware, createStore, compose, combineReducers} from "redux"
 import { profileReducer } from "./profile/reducer"
 import { chatsReducer } from "./chats/reducer"
 import { messagesReducer } from "./messages/reducer"
+import { gistsReducer } from "./gists/reducer"
 import thunk from 'redux-thunk';
 
 import { persistStore, persistReducer } from 'redux-persist';
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
     chats: chatsReducer,
     profile: profileReducer,
     messages: messagesReducer,
+    gists: gistsReducer,
 });
 
 // оборачиваем редьюсеры в persist

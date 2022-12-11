@@ -1,6 +1,7 @@
 import Home from './Home';
 import Profile from './Profile';
 import Chats from './Chats';
+import GistsList from './GistsList';
 import { useEffect, useState, useRef } from 'react';
 import { Link, Route, Routes} from 'react-router-dom';
 import NotFound from './NotFound';
@@ -54,13 +55,17 @@ function RoutesUser() {
             <li> 
                 <Link to="/chats">Chats</Link> 
             </li>
+            <li>
+              <Link to="/gists">Gists</Link>
+            </li>
         </ul>
             <Routes>
                 <Route exact path="/"></Route>
                 <Route exact path="/profile" element={<Profile />}></Route>
                 <Route exact path="/chats" element={<Chats />}></Route>
                 <Route path="/chats/:chatId" element={<Chats />}></Route>
-                <Route path='/nochat' element={<NoChat />}></Route>
+                <Route path="/nochat" element={<NoChat />}></Route>
+                <Route path="/gists" element={<GistsList />}></Route>
                 <Route path="*" element={<NotFound/>}></Route>
             </Routes>
         </div>
