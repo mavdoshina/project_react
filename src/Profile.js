@@ -10,15 +10,9 @@ function Profile() {
         const dispatch = useDispatch();
         const [value, setValue] = useState('');
 
-        // const setShowName = useCallback(() => {
-        //     dispatch(toggleShowName);
-        // }, [dispatch]);
-
         const handleChange = useCallback((e) => {
             setValue(e.target.value);
             }, []);
-
-        // const setName = () => {};
 
         const setName = useCallback(() => {
             dispatch(changeName(value))

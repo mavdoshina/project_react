@@ -43,7 +43,6 @@ function Form(props) {
         console.log('on submit', { inputValue })
 
         if (onAddMessage) {
-            console.log('sss');
             onAddMessage({ text: inputValue, author: AUTHORS.ME })
         }
 

@@ -17,7 +17,6 @@ function Message(props) {
       <div className='message-item'>
         <div className='message-item__autor'>
         {props.author === AUTHORS.ME ? profileName : props.author}:
-          {/* {props.author} */}
         </div>
         <div className='message-item__text'>{props.text}</div>
       </div>
