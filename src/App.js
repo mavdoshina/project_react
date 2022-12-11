@@ -1,74 +1,25 @@
-import { useEffect, useState, useRef } from 'react';
+// https://github.com/marylorian/react_0607
+// https://github.com/marylorian/react_1405
+
+import React from 'react';
 import './App.css';
-import Message from './Message';
-import Form from './Form';
-import Chat from './Chat';
+import RoutesUser from './RoutesUser';
+import { useState } from 'react';
+import { Provider } from "react-redux";
+import {store, persistor} from "./store/index";
+import { PersistGate } from "redux-persist/es/integration/react";
+
 function App() {
-    const [messageList, setMessageList] = useState([
-        {
-          text:'Привет',
-          author: 'Marina',
-        },
-        {
-          text:'Ваше сообщение получено!',
-          author: 'robot',
-        }
-      ])
-      const [messageBody, setMessageBody] = useState({
-        text:'',
-        author: '',
-      });
-
-      const [chatList, setChatList] = useState([
-        {
-          id: '1',
-          name: 'Чат №1'
-        },
-        {
-          id: '2',
-          name: 'Чат №2'
-        }
-      ]);
-
-      const [chatBody, setChatBody] = useState({
-        id: '',
-        name: ''
-      });
-    
-      const ROBOT_MESSAGE = 'Ваше сообщение получено!';
-
-      const inputRef = useRef(null);
-    
-      useEffect(() => {
-       
-        if(messageList.length > 0 && messageList.slice(-1)[0].author !== 'robot'){
-          setTimeout(()=>{
-            setMessageList(prevstate => [...prevstate, {text:ROBOT_MESSAGE, author:'robot'}])
-          }, 1500)
-        }
-        inputRef.current?.focus();
-      },[messageList])
-
       return (
-        <div className="App">
+        <Provider store={store}>
+          <PersistGate persistor={persistor}>
+            <div className="App">
             <div className='App-body'>
-              <div className="chatList">
-                {
-                  chatList.map((item,index)=><Chat id={item.id} name={item.name} key={index}/>)
-                }
+                <RoutesUser/>
               </div>
-
-              <div className='messageArea'>
-                <Form data={messageBody} setData={setMessageBody} setMessage={setMessageList} inputRef={inputRef}></Form>
-
-                <div className='messageList'>
-                    {
-                    messageList.map((item,index)=><Message text={item.text} author={item.author} key={index}/>)
-                    }
-                </div>
-              </div>
-          </div>
-        </div>
+            </div>
+          </PersistGate>
+        </Provider>
       );
 }
 
