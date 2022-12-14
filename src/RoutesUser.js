@@ -6,37 +6,21 @@ import { useEffect, useState, useRef } from 'react';
 import { Link, Route, Routes} from 'react-router-dom';
 import NotFound from './NotFound';
 import NoChat from './NoChat';
+import SignUp from './SignUp';
+import Login from './Login';
 import {AUTHORS} from "./constants";
 import {useSelector, useDispatch} from "react-redux";
 function RoutesUser() {
-    const initialChats = {
-        id1: {
-          name: "Chat1",
-          messages: [
-            {
-              text:'Привет',
-              author: AUTHORS.ME,
-            },
-            {
-              text:'Ваше сообщение получено!',
-              author: AUTHORS.BOT,
-            }
-          ],
-        },
-        id2: {
-          name: "Chat2",
-          messages: [
-            {
-              text:'Привет',
-              author: 'Elena',
-            },
-            {
-              text:'Ваше сообщение получено!',
-              author: AUTHORS.BOT,
-            }
-          ],
-        },
-      };
+  const [authed, setAuthed] = useState(false);
+  useEffect(() => {
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setAuthed(true);
+      } else {
+        setAuthed(false);
+      }
+    })
+  }, []);
     
       // const [chats, setChats] = useState(initialChats);
 
@@ -58,9 +42,17 @@ function RoutesUser() {
             <li>
               <Link to="/gists">Gists</Link>
             </li>
+            <li>
+              <Link to="/signup">Registration</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
         </ul>
             <Routes>
                 <Route exact path="/"></Route>
+                <Route exact path="/login" element={<Login />}></Route>
+                <Route exact path="/signup" element={<SignUp />}></Route>
                 <Route exact path="/profile" element={<Profile />}></Route>
                 <Route exact path="/chats" element={<Chats />}></Route>
                 <Route path="/chats/:chatId" element={<Chats />}></Route>
