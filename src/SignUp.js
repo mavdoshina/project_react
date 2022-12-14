@@ -2,8 +2,9 @@ import { getFormLabelUtilityClasses } from '@mui/material';
 import { useEffect, useState, useRef } from 'react';
 import { Link, Route, Routes} from 'react-router-dom';
 
-import  firebase from "firebase";
-import "./services/firebase.js"
+import  { auth } from "./services/firebase";
+import  { createUserWithEmailAndPassword } from "firebase/auth";
+// import "./services/firebase.js"
 function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,7 +19,7 @@ function Signup() {
         e.preventDefault();
         setError("");
         try {
-            await firebase.auth().createUserWithEmailAndPassword(email, password);
+            await createUserWithEmailAndPassword(auth, email, password);
         } catch (error) {
             setError(error.message);
         }

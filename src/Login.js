@@ -1,7 +1,8 @@
 import { useEffect, useState, useRef } from 'react';
 import { Link, Route, Routes} from 'react-router-dom';
 
-import  firebase from "firebase";
+import  { auth } from "./services/firebase";
+import  { signInWithEmailAndPassword } from "firebase/auth";
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -17,7 +18,7 @@ function Login() {
         e.preventDefault();
         setError("");
         try {
-            await firebase.auth().signInWithEmailAndPassword(email, password);
+            await signInWithEmailAndPassword(auth, email, password);
         } catch (error) {
         setError(error.message);
         }

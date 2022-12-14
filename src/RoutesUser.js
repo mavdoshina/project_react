@@ -10,10 +10,15 @@ import SignUp from './SignUp';
 import Login from './Login';
 import {AUTHORS} from "./constants";
 import {useSelector, useDispatch} from "react-redux";
+import  { auth } from "./services/firebase";
+import { onAuthStateChanged } from "firebase/auth"
+import PublicRoute from "./hocs/PublicRoute"
 function RoutesUser() {
   const [authed, setAuthed] = useState(false);
   useEffect(() => {
-    firebase.auth().onAuthStateChanged((user) => {
+    
+    auth.onAuthStateChanged((user) => {
+      console.log(user);
       if (user) {
         setAuthed(true);
       } else {
@@ -51,7 +56,8 @@ function RoutesUser() {
         </ul>
             <Routes>
                 <Route exact path="/"></Route>
-                <Route exact path="/login" element={<Login />}></Route>
+                {/* <Route exact path="/login" element={<Login />}></Route> */}
+                <PublicRoute authenticated={authed}  exact path="/login" element={<Login />}></PublicRoute>
                 <Route exact path="/signup" element={<SignUp />}></Route>
                 <Route exact path="/profile" element={<Profile />}></Route>
                 <Route exact path="/chats" element={<Chats />}></Route>
