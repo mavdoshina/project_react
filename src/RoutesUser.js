@@ -12,20 +12,9 @@ import {AUTHORS} from "./constants";
 import {useSelector, useDispatch} from "react-redux";
 import  { auth } from "./services/firebase";
 import { onAuthStateChanged } from "firebase/auth"
-import PublicRoute from "./hocs/PublicRoute"
+import PrivateRoutes from "./hocs/PrivateRoutes"
 function RoutesUser() {
-  const [authed, setAuthed] = useState(false);
-  useEffect(() => {
-    
-    auth.onAuthStateChanged((user) => {
-      console.log(user);
-      if (user) {
-        setAuthed(true);
-      } else {
-        setAuthed(false);
-      }
-    })
-  }, []);
+  
     
       // const [chats, setChats] = useState(initialChats);
 
@@ -55,16 +44,17 @@ function RoutesUser() {
             </li>
         </ul>
             <Routes>
+              <Route element={<PrivateRoutes/>}>
                 <Route exact path="/"></Route>
-                {/* <Route exact path="/login" element={<Login />}></Route> */}
-                <PublicRoute authenticated={authed}  exact path="/login" element={<Login />}></PublicRoute>
-                <Route exact path="/signup" element={<SignUp />}></Route>
                 <Route exact path="/profile" element={<Profile />}></Route>
                 <Route exact path="/chats" element={<Chats />}></Route>
                 <Route path="/chats/:chatId" element={<Chats />}></Route>
                 <Route path="/nochat" element={<NoChat />}></Route>
                 <Route path="/gists" element={<GistsList />}></Route>
-                <Route path="*" element={<NotFound/>}></Route>
+              </Route>
+              <Route exact path="/login" element={<Login />}></Route>
+              <Route exact path="/signup" element={<SignUp />}></Route>
+              <Route path="*" element={<NotFound/>}></Route>
             </Routes>
         </div>
     )
