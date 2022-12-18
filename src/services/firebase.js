@@ -1,6 +1,7 @@
 import {initializeApp} from "firebase/app";
 import {getAuth, onAuthStateChanged} from "firebase/auth";
 import { useEffect, useState } from 'react';
+import { getFirestore } from 'firebase/firestore';
 
 const config = {
     apiKey: "AIzaSyDWE5JHHxilhcoN635FYjeZHuk3qZ2alRI",
@@ -15,6 +16,7 @@ const config = {
 const app = initializeApp(config);
 
 export const auth = getAuth(app);
+export const db = getFirestore(app);
 
 // custom hook
 export function useAuth() {

@@ -6,12 +6,17 @@ import RoutesUser from './RoutesUser';
 import Home from './Home';
 import ChatList from './ChatList';
 import {useSelector, useDispatch, shallowEqual} from "react-redux";
+// import {
+//   addMessageWithThunk
+// } from "./store/messages/actions";
 import {
-  addMessageWithThunk
+  addMessageWithFirebase
 } from "./store/messages/actions";
 import { getChatList } from "./store/chats/selectors";
 import {AUTHORS} from "./constants";
 import MessageList from './MessageList';
+import {db} from './services/firebase';
+import { collection, addDoc } from "firebase/firestore";
 
 
 function Chats() {
@@ -26,8 +31,18 @@ function Chats() {
     }
  
     const  handleAddMessage = (message) => {
-      dispatch(addMessageWithThunk(chatId, message));
+      const docRef = addDoc(collection(db, "chats"), {
+        name: "Tokyo",
+        country: "Japan"
+      })
+      console.log(docRef);
+      // dispatch(addMessageWithThunk(chatId, message));
     }
+
+    // const handleAddMessage = addDoc(collection(db, "cities"), {
+    //   name: "Tokyo",
+    //   country: "Japan"
+    // });
 
     const messages = useSelector(state => state.messages.messageList);
 
