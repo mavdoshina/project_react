@@ -16,7 +16,7 @@ import { getChatList } from "./store/chats/selectors";
 import {AUTHORS} from "./constants";
 import MessageList from './MessageList';
 import {db} from './services/firebase';
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc } from "firebase/firestore";
 
 
 function Chats() {
@@ -31,10 +31,7 @@ function Chats() {
     }
  
     const  handleAddMessage = (message) => {
-      const docRef = addDoc(collection(db, "chats"), {
-        name: "Tokyo",
-        country: "Japan"
-      })
+      const docRef = setDoc(doc(db, "chats", chatId),  message)
       console.log(docRef);
       // dispatch(addMessageWithThunk(chatId, message));
     }
